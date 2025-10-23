@@ -7,6 +7,7 @@ export default function Footer() {
     const { t } = useTranslation();
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState("");
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +25,7 @@ export default function Footer() {
 
         setStatus("loading");
         try {
-            const res = await fetch("/api/newsletter", {
+            const res = await fetch(`${BASE_URL}/api/newsletter`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email: email.trim() }),
