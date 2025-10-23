@@ -25,7 +25,7 @@ export default function ContactSection() {
       setStatus(res.data.message);
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
     } catch (err) {
-      setStatus(err.response?.data?.error || "Erro ao enviar a mensagem.");
+      setStatus(err.response?.data?.error || "Erro ao enviar a mensagem!");
     }
   };
 
