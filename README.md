@@ -22,6 +22,7 @@ O site inclui:
 
 🐾 Referências e estilos inspirados no nosso jogo autoral Mister Kitty
 
+___________________________________________________________________________________________
 
 🎨 Front-end
 
@@ -39,6 +40,7 @@ O site inclui:
 
 ☁️ Vercel — hospedagem do front-end com build automático
 
+___________________________________________________________________________________________
 
 ⚙️ Back-end
 
@@ -52,6 +54,7 @@ O site inclui:
 
 ☁️ Railway — hospedagem do servidor backend
 
+___________________________________________________________________________________________
 
 🧩 Extras
 
@@ -63,6 +66,7 @@ O site inclui:
 
 🐱‍👤 Design clean e interativo, com seção About, Skills-Techs e Newsletter funcional
 
+___________________________________________________________________________________________
 
 🐱 Universo Mister Kitty
 O portfólio também reflete um pouco do mundo de Mister Kitty, meu jogo 2D indie desenvolvido em Godot 4.4.
