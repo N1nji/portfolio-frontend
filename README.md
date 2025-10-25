@@ -22,6 +22,7 @@ O site inclui:
 
 🐾 Referências e estilos inspirados no nosso jogo autoral Mister Kitty
 
+
 🎨 Front-end
 
 ⚛️ React + Vite — estrutura moderna e rápida para o front-end
@@ -38,6 +39,7 @@ O site inclui:
 
 ☁️ Vercel — hospedagem do front-end com build automático
 
+
 ⚙️ Back-end
 
 🟢 Node.js + Express — servidor rápido e leve
@@ -50,6 +52,7 @@ O site inclui:
 
 ☁️ Railway — hospedagem do servidor backend
 
+
 🧩 Extras
 
 📂 Arquitetura modular com controllers e rotas bem organizadas
@@ -60,15 +63,19 @@ O site inclui:
 
 🐱‍👤 Design clean e interativo, com seção About, Skills-Techs e Newsletter funcional
 
+
 🐱 Universo Mister Kitty
 O portfólio também reflete um pouco do mundo de Mister Kitty, meu jogo 2D indie desenvolvido em Godot 4.4.
 No jogo, um gatinho perdido enfrenta desafios para encontrar o caminho de volta pra casa uma metáfora sobre persistência e autodescoberta.
+
 🪐✨ “Às vezes, os maiores códigos são escritos com o coração.”
+
 
 🌐 Acesse o Site
 🔗 https://portfolio-n1nji.vercel.app
 
 💌 Contato
+
 📧 Envie uma mensagem pelo formulário do site
 ou me encontre nas redes:
 
@@ -79,4 +86,5 @@ ou me encontre nas redes:
 🎮 itch.io: https://n1nji.itch.io/mister-kitty
 
 Feito com amor por eu mesmo Pedro Felipe (N1NJI)
+
 “O código é a arte que conecta o impossível ao imaginável.”
