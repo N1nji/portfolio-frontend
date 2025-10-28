@@ -11,16 +11,22 @@ export default function Header() {
         <header className="fixed top-0 left-0 w-full bg-deepNavy/80 backdrop-blur-md shadow-md z-50">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* LOGO + TEXTO */}
-                <div className="flex items-center gap-3">
-                    <img
-                        src="assets/Logo-N1S1Games.png"
-                        alt="N1S1 Games Logo"
-                        className="w-14 h-14"
-                    />
-                    <span className="text-xl font-poppins text-white">
-                        Pedro Felipe | N1S1 Games
-                    </span>
-                </div>
+            <section id="home">
+                <div 
+                    className="flex items-center gap-3 cursos-pointer"
+                    >
+                        <img
+                            src="assets/Logo-N1S1Games.png"
+                            alt="N1S1 Games Logo"
+                            className="w-14 h-14 cursor-pointer transition-transform duration-300 hover:scale-110"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            
+                        />
+                        <span className="text-xl font-poppins text-white">
+                            Pedro Felipe | N1S1 Games
+                        </span>
+                    </div>
+                </section>
 
                 {/* NAV DESKTOP */}
                 <nav className="hidden md:flex items-center gap-8 text-white font-lobster">
