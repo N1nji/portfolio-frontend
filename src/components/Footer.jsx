@@ -50,10 +50,10 @@ export default function Footer() {
     };
 
     return (
-        <footer className="relative z-10 text-black text-center overflow-hidden py-24 px-6">
-            {/* O FUNDO INCLINADO ESTILO KILLMONDAY */}
+        <footer className="relative z-10 text-white text-center overflow-hidden py-24 px-6 -mt-20">
+            {/* FUNDO AZUL INCLINADO - O 'clipPath' cria o corte e o '-mt-20' acima puxa ele para cima do azul vazio */}
             <div 
-                className="absolute inset-0 bg-[#e61a1a] z-0" 
+                className="absolute inset-0 bg-[#0024ff] z-0" 
                 style={{
                     clipPath: "polygon(0 15%, 100% 0, 100% 100%, 0 100%)",
                 }}
@@ -63,10 +63,10 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 max-w-md mx-auto" // Adicionado relative z-10 aqui
+                className="relative z-10 max-w-md mx-auto"
             >
                 <h2
-                    className="text-3xl font-black mb-2 uppercase tracking-tighter" // Ajuste para fonte pesada
+                    className="text-3xl font-black mb-2 uppercase tracking-tighter"
                     dangerouslySetInnerHTML={{ __html: t("footer.newsletter_title") }}
                 />
                 <p
@@ -124,7 +124,7 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noreferrer"
                                 whileHover={{ scale: 1.2 }}
-                                className="hover:text-white transition-all"
+                                className="hover:text-black transition-all"
                             >
                                 {item.icon}
                             </motion.a>
