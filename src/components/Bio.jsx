@@ -15,13 +15,13 @@ export default function Bio() {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-transparent text-white overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-midnightBlue to-deepNavy text-white overflow-hidden"
     >
       {/* Luz de fundo sutil (opcional): 
           Ela é azul com muita transparência (10%), então vai criar uma "aura" 
           sobre as suas estrelas sem escondê-las.
       */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-b from-midnightBlue to-deepNavy rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl text-center space-y-8" data-aos="fade-up">
         {/* Título com brilho sutil */}
