@@ -16,7 +16,6 @@ export default function Footer() {
             return;
         }
 
-        //VALIDAÇÃO SIMPLES
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email.trim())) {
             setStatus("error");
@@ -51,69 +50,68 @@ export default function Footer() {
     };
 
     return (
-        <footer
-            className="relative z-10 text-white text-center overflow-hidden backdrop-blur-sm bg-black/40 border-t border-white/10 py-14 px-6"
-            style={{
-                clipPath: "polygon(0 10%, 100% 0, 100% 100%, 0 100%)",
-            }}
-        >
-            <div className="absolute -top-10 left-0 w-full h-10 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0,8)_0%,transparent_70%)]" />
+        <footer className="relative z-10 text-black text-center overflow-hidden py-24 px-6">
+            {/* O FUNDO INCLINADO ESTILO KILLMONDAY */}
+            <div 
+                className="absolute inset-0 bg-[#e61a1a] z-0" 
+                style={{
+                    clipPath: "polygon(0 15%, 100% 0, 100% 100%, 0 100%)",
+                }}
+            />
 
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="max-w-md mx-auto"
+                className="relative z-10 max-w-md mx-auto" // Adicionado relative z-10 aqui
             >
                 <h2
-                    className="text-2xl font-bold mb-2"
+                    className="text-3xl font-black mb-2 uppercase tracking-tighter" // Ajuste para fonte pesada
                     dangerouslySetInnerHTML={{ __html: t("footer.newsletter_title") }}
                 />
                 <p
-                    className="text-sm opacity-80 mb-6"
+                    className="text-sm font-bold opacity-90 mb-6 uppercase"
                     dangerouslySetInnerHTML={{ __html: t("footer.newsletter_desc") }}
                 />
 
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col sm:flex-row gap-3 justify-center mb-8"
+                    className="flex flex-col gap-2 justify-center mb-8"
                 >
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={t("footer.newsletter_placeholder")}
-                        className="px-4 py-2 rounded-md text-black w-full sm:2-64 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                        className="px-4 py-3 text-black w-full focus:outline-none border-none"
                         aria-label={t("footer.newsletter_placeholder")}
                     />
 
                     <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-md font-semibold transition flex items-center justify-center"
+                        className="bg-white text-black px-6 py-2 font-black transition flex items-center justify-center uppercase border-none"
                         disabled={status === "loading"}
                         aria-busy={status === "loading"}
                     >
-                        {status === "loading" ? "..." : "OK"}
+                        {status === "loading" ? "..." : "Submit"}
                     </motion.button>
                 </form>
 
                 {status === "success" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-green-400 text-sm mt-3">
+                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white text-sm mt-3 font-bold bg-black/20 p-2">
                         {t("footer.success_message")}
                     </motion.p>
                 )}
                 {status === "error" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-400 text-sm mt-3">
+                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white text-sm mt-3 font-bold bg-black/20 p-2">
                         {t("footer.error_message")}
                     </motion.p>
                 )}
 
                 <div className="flex flex-col items-center gap-4 mt-10">
-                    <p className="text-sm opacity-80" dangerouslySetInnerHTML={{ __html: t("footer.title") }} />
-
-                    <div className="flex gap-6 text-xl">
+                    <div className="flex gap-6 text-2xl">
                         {[
                             { icon: <FaGithub />, link: "https://github.com/N1nji" },
                             { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/pedrofelipe-n1" },
@@ -126,7 +124,7 @@ export default function Footer() {
                                 target="_blank"
                                 rel="noreferrer"
                                 whileHover={{ scale: 1.2 }}
-                                className="hover:text-indigo-400 transition-all"
+                                className="hover:text-white transition-all"
                             >
                                 {item.icon}
                             </motion.a>
@@ -134,7 +132,7 @@ export default function Footer() {
                     </div>
 
                     <p
-                        className="text-xs opacity-50 mt-2"
+                        className="text-[10px] font-bold opacity-60 mt-2 uppercase tracking-widest"
                         dangerouslySetInnerHTML= {{
                             __html: t("footer.rights").replace("{year}", new Date().getFullYear()),
                         }}
@@ -144,6 +142,3 @@ export default function Footer() {
         </footer>
     );
 }
-
-
-                    
