@@ -14,7 +14,7 @@ export default function Hero() {
         data-aos="zoom-in"
       >
         <img
-          src="assets/team/photo temp.jpeg"
+          src="assets/team/photo temp2.jpeg"
           className="w-full h-full object-cover rounded-full border-4 border-indigo-400 shadow-md select-none pointer-events-none"
         />
       </div>
