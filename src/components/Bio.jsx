@@ -1,55 +1,78 @@
 import { useTranslation } from "../hooks/useTranslation";
 import { motion } from "framer-motion";
-import { FaDiscord, FaLinkedin, FaXTwitter, FaGithub } from "react-icons/fa6";
-
-const socialLinks = [
-  { href: "https://discord.com/users/n1njii", icon: <FaDiscord size={28} />, color: "#5865F2" },
-  { href: "https://www.linkedin.com/in/pedrofelipe-n1", icon: <FaLinkedin size={28} />, color: "#0A66C2" },
-  { href: "https://x.com/n1njimilanesa", icon: <FaXTwitter size={28} />, color: "#d1d5db" },
-  { href: "https://github.com/N1nji", icon: <FaGithub size={28} />, color: "#ffffff" },
-];
+import { FaDiscord, FaLinkedin, FaXTwitter, FaGithub } from "react-icons/fa6"; // 👈 Import dos ícones
 
 export default function Bio() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-midnightBlue to-deepNavy text-white">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-4xl text-center space-y-6"
-      >
+    <section
+      id="about"
+      className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-midnightBlue to-deepNavy text-white"
+    >
+      <div className="max-w-4xl text-center space-y-6" data-aos="fade-up">
         <h2 className="text-4xl font-lobster mb-6">{t("bio.title")}</h2>
-        <p className="text-lg text-gray-300">{t("bio.description")}</p>
 
+        <p
+          className="text-lg text-gray-300"
+          dangerouslySetInnerHTML={{ __html: t("bio.description") }}
+        />
+
+        {/* 🔗 Redes sociais */}
         <div className="flex gap-6 mt-6 justify-center">
-          {socialLinks.map((link, idx) => (
-            <motion.a
-              key={idx}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, color: link.color }}
-              className="text-moonlightGray transition-colors"
-            >
-              {link.icon}
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
+          <motion.a
+            href="https://discord.com/users/n1njii"
+            target="_blank"
+            whileHover={{ scale: 1.2, color: "#5865F2" }}
+            transition={{ duration: 0.3 }}
+            className="text-moonlightGray hover:text-[#5865F2] transition"
+          >
+            <FaDiscord size={28} />
+          </motion.a>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        animate={{ y: [0, -15, 0] }}
-        transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, opacity: { duration: 1 } }}
-        className="mt-12 flex justify-center"
-      >
-        <div className="w-[250px] h-[250px] md:w-[500px] md:h-[300px] bg-deepNavy/60 rounded-lg flex items-center justify-center shadow-2xl overflow-hidden border border-white/5">
-          <img src="assets/misterkitty.png" alt="Mister Kitty" className="object-contain w-full h-full" />
+          <motion.a
+            href="https://www.linkedin.com/in/pedrofelipe-n1"
+            target="_blank"
+            whileHover={{ scale: 1.2, color: "#0A66C2" }}
+            transition={{ duration: 0.3 }}
+            className="text-moonlightGray hover:text-[#0A66C2] transition"
+          >
+            <FaLinkedin size={28} />
+          </motion.a>
+
+          <motion.a
+            href="https://x.com/n1njimilanesa"
+            target="_blank"
+            whileHover={{ scale: 1.2, color: "#d1d5db" }}
+            transition={{ duration: 0.3 }}
+            className="text-moonlightGray hover:text-gray-200 transition"
+          >
+            <FaXTwitter size={28} />
+          </motion.a>
+
+          <motion.a
+            href="https://github.com/N1nji"
+            target="_blank"
+            whileHover={{ scale: 1.2, color: "#ffffff" }}
+            transition={{ duration: 0.3 }}
+            className="text-moonlightGray hover:text-white transition"
+          >
+            <FaGithub size={28} />
+          </motion.a>
         </div>
-      </motion.div>
+      </div>
+
+      {/* 🐾 Imagem Mister Kitty */}
+      <div className="mt-12 flex justify-center" data-aos="fade-up">
+        <div className="w-[250px] h-[250px] sm:w-[280px] sm:h-[280px] md:w-[650px] md:h-[370px] bg-deepNavy/60 rounded-lg flex items-center justify-center shadow-lg overflow-hidden">
+          <img
+            src="assets/misterkitty.png"
+            alt="Mister Kitty"
+            className="object-contain w-full h-full"
+          />
+        </div>
+      </div>
+
     </section>
   );
 }
