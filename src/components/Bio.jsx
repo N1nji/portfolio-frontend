@@ -21,7 +21,7 @@ export default function Bio() {
           Ela é azul com muita transparência (10%), então vai criar uma "aura" 
           sobre as suas estrelas sem escondê-las.
       */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-b from-midnightBlue to-deepNavy rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl text-center space-y-8" data-aos="fade-up">
         {/* Título com brilho sutil */}
