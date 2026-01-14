@@ -53,7 +53,7 @@ export default function Footer() {
         <footer className="relative z-10 text-white text-center overflow-hidden py-24 px-6 -mt-20">
             {/* FUNDO AZUL INCLINADO - O 'clipPath' cria o corte e o '-mt-20' acima puxa ele para cima do azul vazio */}
             <div 
-                className="absolute inset-0 bg-astralBlue z-0" 
+                className="absolute inset-0 bg-gradient-to-t from-midnightNavy to-astralBlue z-0" 
                 style={{
                     clipPath: "polygon(0 15%, 100% 0, 100% 100%, 0 100%)",
                 }}
