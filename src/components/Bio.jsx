@@ -1,6 +1,9 @@
 import { useTranslation } from "../hooks/useTranslation";
 import { motion } from "framer-motion";
 import { FaDiscord, FaLinkedin, FaXTwitter, FaGithub } from "react-icons/fa6";
+// Importações do Three.js
+import { Canvas } from "@react-three/fiber";
+import { Float, MeshDistortMaterial, Sphere, OrbitControls } from "@react-three/drei";
 
 export default function Bio() {
   const { t } = useTranslation();
@@ -13,28 +16,18 @@ export default function Bio() {
   ];
 
   return (
-    <section
-      id="about"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-b from-midnightBlue to-deepNavy text-white overflow-hidden"
-    >
-      {/* Luz de fundo sutil (opcional): 
-          Ela é azul com muita transparência (10%), então vai criar uma "aura" 
-          sobre as suas estrelas sem escondê-las.
-      */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-
+    <section id="about" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-transparent text-white overflow-hidden">
+      
+      {/* CONTEÚDO DE TEXTO (UI) */}
       <div className="relative z-10 max-w-4xl text-center space-y-8" data-aos="fade-up">
-        {/* Título com brilho sutil */}
         <h2 className="text-4xl md:text-5xl font-lobster mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
           {t("bio.title")}
         </h2>
 
-        <p
-          className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto"
+        <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto"
           dangerouslySetInnerHTML={{ __html: t("bio.description") }}
         />
 
-        {/* Redes sociais com efeito de vidro (combina muito com espaço/estrelas) */}
         <div className="flex gap-5 mt-8 justify-center">
           {socialLinks.map((link, index) => (
             <motion.a
@@ -43,8 +36,7 @@ export default function Bio() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.15, y: -5 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="p-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md hover:border-white/20 hover:bg-white/10 transition-all shadow-xl text-moonlightGray"
+              className="p-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md hover:border-white/20 transition-all text-moonlightGray"
               style={{ '--hover-color': link.color }}
             >
               <div className="hover:text-[var(--hover-color)] transition-colors duration-300">
@@ -55,24 +47,36 @@ export default function Bio() {
         </div>
       </div>
 
-      {/* 🐾 Container Mister Kitty com animação de flutuação */}
-      <div className="mt-16 flex justify-center relative z-10" data-aos="fade-up">
-        <motion.div 
-          animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="relative group"
-        >
-          {/* Brilho tipo "névoa espacial" atrás do gatinho */}
-          <div className="absolute -inset-2 bg-blue-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition duration-700"></div>
-          
-          <div className="relative w-[280px] h-[280px] md:w-[600px] md:h-[350px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
-            <img
-              src="assets/misterkitty.png"
-              alt="Mister Kitty"
-              className="object-contain w-full h-full p-4 transform transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-        </motion.div>
+      {/* 🐾 CONTAINER 3D (Substituindo a imagem do Mister Kitty) */}
+      <div className="mt-12 w-full h-[350px] md:h-[500px] relative z-10 cursor-grab active:cursor-grabbing" data-aos="fade-up">
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          {/* Luzes para o objeto 3D aparecer */}
+          <ambientLight intensity={0.7} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} color="#3b82f6" />
+          <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+
+          {/* O Objeto 3D - Uma esfera orgânica que distorce (Efeito Cyberpunk) */}
+          <Float speed={2} rotationIntensity={2} floatIntensity={2}>
+            <Sphere args={[1.4, 100, 100]} scale={1}>
+              <MeshDistortMaterial
+                color="#1e3a8a" // Cor que combina com Midnight Blue
+                attach="material"
+                distort={0.4} // Grau de distorção (parece uma gelatina/energia)
+                speed={4}     // Velocidade da animação
+                roughness={0.2}
+                metalness={0.8}
+              />
+            </Sphere>
+          </Float>
+
+          {/* Se quiser que o usuário possa girar o objeto */}
+          <OrbitControls enableZoom={false} />
+        </Canvas>
+
+        {/* Legenda opcional flutuando sobre o 3D */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none opacity-50 text-xs uppercase tracking-widest">
+           Interage com o 3D
+        </div>
       </div>
 
     </section>
