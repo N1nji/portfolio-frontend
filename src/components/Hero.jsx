@@ -29,7 +29,7 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-full bg-indigo-400 blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 animate-pulse" />
           
           <img
-            src="assets/team/pedrofelipe.jpg"
+            src="assets/team/pedro-felipe.jpg"
             alt={t("hero.name")}
             className="relative w-full h-full object-cover rounded-full border-4 border-indigo-400/30 shadow-2xl select-none pointer-events-none transition-transform duration-500 group-hover:scale-105 group-hover:border-indigo-400"
           />
