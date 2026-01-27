@@ -261,7 +261,7 @@ export const translations = {
           role: "Digital Artist & Game Designer",
           description:
             "Creates the visual universe, characters, and entire aesthetic of the games.",
-          extra: "Art direction and design.",
+          extra: "A specialist and talented artist at N1S1 Games, she works in art direction and design.",
           link: "https://portfolio-sh1zi.vercel.app",
         },
         {
