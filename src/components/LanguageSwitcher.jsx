@@ -21,12 +21,12 @@ export default function LanguageSwitcher() {
 
     const changeLanguage = (selectedLang) => {
         if (lang !== selectedLang) {
-            setLang(selectedLang);
-            localStorage.setItem("lang", selectedLang);
-            // Removi o reload para ser instantâneo
+            localStorage.setItem("lang", selectedLang); // Salva primeiro
+            window.location.reload(); // Recarrega tudo
         }
         setIsLangOpen(false);
     };
+    
 
     const languages = [
         { code: "pt", label: "Português", flag: "🇧🇷" },
