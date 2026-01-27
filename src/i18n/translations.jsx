@@ -153,7 +153,7 @@ export const translations = {
       titles: ["Game Developer", "Software Developer"],
       role: "and Co-Founder of",
       company: "N1S1 Games",
-      view_work: "Falar Comigo",
+      view_work: "View Projects",
       contact: "Contact Me",
     },
     bio: {
