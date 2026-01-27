@@ -36,7 +36,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="relative z-10 text-white text-center overflow-hidden py-20 px-6 -mt-20">
+        <footer className="relative z-10 text-white text-center overflow-hidden py-19 px-6 -mt-20">
             {/* FUNDO COM GRADIENTE E CLIPPATH */}
             <div 
                 className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-midnightNavy to-black z-0" 
