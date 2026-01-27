@@ -2,24 +2,17 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 
-export default function StarsBackground() {
+// Adicionamos a prop "id" para cada seção ter a sua instância única
+export default function StarsBackground({ id = "tsparticles" }) {
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
   return (
     <Particles
-      id="tsparticles"
+      id={id} // ID único aqui
       init={particlesInit}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        zIndex: 0,
-      }}
-
+      className="absolute inset-0 z-0 pointer-events-none" // pointer-events-none garante que não bloqueie cliques
       options={{
         background: { color: { value: "transparent" } },
         fpsLimit: 60,
@@ -43,8 +36,6 @@ export default function StarsBackground() {
             enable: true,
             speed: 0.4,
             direction: "none",
-            random: false,
-            straight: false,
             outModes: "bounce",
           },
           number: {
@@ -57,7 +48,6 @@ export default function StarsBackground() {
         },
         detectRetina: true,
       }}
-      className="absolute inset-0 z-0"
     />
   );
 }

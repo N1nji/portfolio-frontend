@@ -58,7 +58,7 @@ export default function TechSection() {
     return (
         <section id="tech" className="relative min-h-[60vh] bg-gradient-to-b from-deepNavy to-midnightBlue text-white py-20 overflow-hidden">
             {/* 1. O Background de Estrelas entra aqui como primeiro filho */}
-            <StarsBackground />
+            <StarsBackground id="particles-tech" />
             {/* 2. Envolva TODO o conteúdo nesta div para garantir a hierarquia visual */}
             <div className="relative z-10 w-full flex flex-col items-center">
 
