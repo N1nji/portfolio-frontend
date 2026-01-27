@@ -15,6 +15,8 @@ export const translations = {
       titles: ["Desenvolvedor de Jogos", "Desenvolvedor de Software"],
       role: "e Co-Fundador da",
       company: "N1S1 Games",
+      view_work: "Ver Projetos",
+      contact: "Falar Comigo",
     },
     bio: {
       title: "Sobre Mim",
@@ -151,6 +153,8 @@ export const translations = {
       titles: ["Game Developer", "Software Developer"],
       role: "and Co-Founder of",
       company: "N1S1 Games",
+      contact: "Falar Comigo",
+      contact: "Contact Me",
     },
     bio: {
       title: "About Me",
