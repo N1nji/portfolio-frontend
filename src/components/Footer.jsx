@@ -41,7 +41,7 @@ export default function Footer() {
             <div 
                 className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-midnightNavy to-black z-0" 
                 style={{
-                    clipPath: "polygon(0 17%, 100% 0, 100% 100%, 0 100%)",
+                    clipPath: "polygon(0 12%, 100% 0, 100% 100%, 0 100%)",
                 }}
             />
 
