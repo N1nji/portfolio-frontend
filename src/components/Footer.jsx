@@ -36,7 +36,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="relative z-10 text-white text-center overflow-hidden py-32 px-6 -mt-20">
+        <footer className="relative z-10 text-white text-center overflow-hidden py-24 px-6 -mt-20">
             {/* FUNDO COM GRADIENTE E CLIPPATH */}
             <div 
                 className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-midnightNavy to-black z-0" 
@@ -49,7 +49,7 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 max-w-2xl mx-auto pt-10"
+                className="relative z-10 max-w-md mx-auto"
             >
                 {/* BRANDING */}
                 <div className="mb-8 opacity-50 hover:opacity-100 transition-opacity">
