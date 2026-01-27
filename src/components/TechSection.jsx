@@ -56,6 +56,8 @@ export default function TechSection() {
 
     return (
         <section id="tech" className="relative min-h-[60vh] bg-gradient-to-b from-deepNavy to-midnightBlue text-white py-20 overflow-hidden">
+            {/* 1. O Background de Estrelas entra aqui como primeiro filho */}
+            <StarsBackground />
             <div className="flex flex-col items-center px-6 mb-12">
                 <h2 className="text-4xl font-lobster text-indigo-400 text-center" data-aos="fade-up">
                     {t("tech.title")}

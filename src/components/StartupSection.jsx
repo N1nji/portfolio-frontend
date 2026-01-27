@@ -21,6 +21,8 @@ export default function StartupSection() {
       id="startup"
       className="relative min-h-screen bg-gradient-to-b from-deepNavy to-midnightBlue text-white py-24 px-6 flex flex-col items-center overflow-hidden"
     >
+      {/* 1. O Background de Estrelas entra aqui como primeiro filho */}
+      <StarsBackground />
       {/* Elementos Decorativos de Fundo */}
       <div className="absolute top-1/4 -left-20 w-64 h-64 bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none" />
