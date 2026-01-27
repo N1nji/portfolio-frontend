@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import VanillaTilt from "vanilla-tilt";
 import { useTranslation } from "../hooks/useTranslation";
+import StarsBackground from "./StarsBackground";
 
 export default function TechSection() {
     const { t } = useTranslation();
@@ -102,7 +103,7 @@ export default function TechSection() {
                     ))}
                 </Slider>
             </div>
-            
+
             </div>
         </section>
     );

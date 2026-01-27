@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import VanillaTilt from "vanilla-tilt";
+import StarsBackground from "./StarsBackground";
 
 export default function StartupSection() {
   const { t } = useTranslation();
