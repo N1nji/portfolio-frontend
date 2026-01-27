@@ -39,7 +39,7 @@ export default function StarsBackground({ id = "tsparticles" }) {
             outModes: "bounce",
           },
           number: {
-            value: 60,
+            value: 20,
             density: { enable: true, area: 800 },
           },
           opacity: { value: 0.5 },
