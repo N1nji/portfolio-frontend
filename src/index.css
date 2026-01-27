@@ -11,3 +11,8 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
+
+.tech-slider .slick-track {
+    display: flex !important;
+    align-items: center !important;
+}
