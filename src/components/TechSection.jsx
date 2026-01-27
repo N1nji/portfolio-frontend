@@ -12,69 +12,91 @@ export default function TechSection() {
     useEffect(() => {
         const elements = document.querySelectorAll(".tilt-card");
         VanillaTilt.init(elements, {
-            max: 15,
+            max: 10,
             speed: 400,
             glare: true,
-            "max-glare": 0.4,
+            "max-glare": 0.3,
             scale: 1.05,
+            gyroscope: true, 
         });
     }, []);
 
     const settings = {
         dots: false,
         infinite: true,
-        speed: 3000,
-        slidesToShow: 4,
-        slidesToScroll: 1,
+        speed: 4000,
         autoplay: true,
         autoplaySpeed: 0,
         cssEase: "linear",
         pauseOnHover: true,
-        swipeToSlide: true,
         draggable: true,
         arrows: false,
+        slidesToShow: 5,
+        responsive: [
+            {
+                breakpoint: 1280,
+                settings: { slidesToShow: 4 }
+            },
+            {
+                breakpoint: 1024,
+                settings: { slidesToShow: 3 }
+            },
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 480,
+                settings: { slidesToShow: 1.5, centerMode: true }
+            }
+        ]
     };
 
     const techs = t("tech.items");
 
     return (
-        <section
-            id="tech"
-            className="min-h-screen bg-gradient-to-b from-deepNavy to-midnightBlue text-white py-20 px-6 flex flex-col items-center"
-        >
-            <h2
-            className="text-4xl font-lobster mb-10 text-indigo-400"
-            data-aos="fade-up"
-        >
-            {t("tech.title")}
-        </h2>
+        <section id="tech" className="relative min-h-[60vh] bg-gradient-to-b from-deepNavy to-midnightBlue text-white py-20 overflow-hidden">
+            <div className="flex flex-col items-center px-6 mb-12">
+                <h2 className="text-4xl font-lobster text-indigo-400 text-center" data-aos="fade-up">
+                    {t("tech.title")}
+                </h2>
+            </div>
 
-            <Slider {...settings} className="max-w-6xl w-full">
-                {techs.map((tech, index) => (
-                    <div
-                    key={index}
-                    className="tilt-card relative bg-deepNavy p-6 rounded-2xl shadow-md border border-indigo-800 hover:border-indigo-400 transition-all duration-300"
-                    data-aos="zoom-in"
-                    data-aos-delay={index * 100}
-                >
-                    <div className="flex flex-col items-center text-center">
-                        <div className="w-20 h-20 mb-4 rounded-full bg-gradient-to-tr from indigo-800 to indigo-400 flex items-center justify-center shadow-lg overflow-hidden">
-                            <img 
-                                src={`/assets/techs/${tech.name.toLowerCase()
-                                    .replace(/[^a-z0-9]/g, "")}.png`}
-                                alt={tech.name}
-                                className="w-12 h-12 object-contain"
-                            />
+            {/* Container Relativo para as Máscaras de Gradiente */}
+            <div className="relative w-full max-w-[100vw]">
+                {/* Máscara Esquerda */}
+                <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-deepNavy to-transparent hidden md:block" />
+                
+                {/* Máscara Direita */}
+                <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-deepNavy to-transparent hidden md:block" />
+
+                <Slider {...settings} className="tech-slider">
+                    {techs.map((tech, index) => (
+                        <div key={index} className="px-4 py-8"> {/* Padding extra para o Tilt não cortar */}
+                            <div className="tilt-card group relative bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-indigo-500/50 transition-colors flex flex-col items-center text-center h-64 justify-center">
+                                
+                                <div className="relative w-20 h-20 mb-6 flex items-center justify-center">
+                                    {/* Brilho atrás do ícone */}
+                                    <div className="absolute inset-0 bg-indigo-500/20 blur-xl rounded-full group-hover:bg-indigo-500/40 transition-all" />
+                                    
+                                    <img 
+                                        src={`/assets/techs/${tech.name.toLowerCase().replace(/[^a-z0-9]/g, "")}.png`}
+                                        alt={tech.name}
+                                        className="w-14 h-14 object-contain z-10 filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                    />
+                                </div>
+
+                                <h3 className="text-xl font-bold text-indigo-300">
+                                    {tech.name === "CSharp" ? "C#" : tech.name}
+                                </h3>
+                                <p className="text-gray-400 text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {tech.desc}
+                                </p>
+                            </div>
                         </div>
-                        <h3 className="text-xl font-bold text-indigo-300 mb-2">{tech.name === "CSharp" ? "C#" : tech.name}</h3>
-                        <p className="text-gray-400 text-sm">{tech.desc}</p>
-                    </div>
-
-                    {/* Efeito de brilho */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition duration-300 pointer-events-none bg-gradient-to-tr from-indigo-500/20 to transparent blur-md"></div>
-                    </div>
-                ))}
-            </Slider>
+                    ))}
+                </Slider>
+            </div>
         </section>
     );
 }
