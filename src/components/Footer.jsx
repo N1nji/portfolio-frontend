@@ -4,20 +4,14 @@ import { useState } from "react";
 import { FaGithub, FaLinkedin, FaDiscord, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
-    const { t } = useTranslation();
+    const { t, lang } = useTranslation();
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState("");
     const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email.trim()) {
-            setStatus("error");
-            return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email.trim())) {
+        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
             setStatus("error");
             return;
         }
@@ -30,32 +24,24 @@ export default function Footer() {
                 body: JSON.stringify({ email: email.trim() }),
             });
 
-            if (!res.ok) {
-                const err = await res.json().catch(() => ({}));
-                console.error("newsletter err:", err);
-                setStatus("error");
-                return;
-            }
+            if (!res.ok) throw new Error();
 
             setStatus("success");
             setEmail("");
         } catch (err) {
-            console.error(err);
             setStatus("error");
         } finally {
-            setTimeout(() => {
-                setStatus("");
-            }, 4500);
+            setTimeout(() => setStatus(""), 4500);
         }
     };
 
     return (
-        <footer className="relative z-10 text-white text-center overflow-hidden py-24 px-6 -mt-20">
-            {/* FUNDO AZUL INCLINADO - O 'clipPath' cria o corte e o '-mt-20' acima puxa ele para cima do azul vazio */}
+        <footer className="relative z-10 text-white text-center overflow-hidden py-32 px-6 -mt-32">
+            {/* FUNDO COM GRADIENTE E CLIPPATH */}
             <div 
-                className="absolute inset-0 bg-gradient-to-t from-midnightNavy to-astralBlue z-0" 
+                className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-midnightNavy to-black z-0" 
                 style={{
-                    clipPath: "polygon(0 15%, 100% 0, 100% 100%, 0 100%)",
+                    clipPath: "polygon(0 20%, 100% 0, 100% 100%, 0 100%)",
                 }}
             />
 
@@ -63,55 +49,62 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 max-w-md mx-auto"
+                className="relative z-10 max-w-2xl mx-auto pt-10"
             >
+                {/* BRANDING */}
+                <div className="mb-8 opacity-50 hover:opacity-100 transition-opacity">
+                     <span className="text-2xl font-lobster tracking-widest uppercase">N1S1 Games</span>
+                </div>
+
                 <h2
-                    className="text-3xl font-black mb-2 uppercase tracking-tighter"
+                    className="text-3xl md:text-4xl font-black mb-3 uppercase tracking-tighter"
                     dangerouslySetInnerHTML={{ __html: t("footer.newsletter_title") }}
                 />
                 <p
-                    className="text-sm font-bold opacity-90 mb-6 uppercase"
+                    className="text-xs md:text-sm font-bold opacity-70 mb-8 uppercase tracking-[0.2em]"
                     dangerouslySetInnerHTML={{ __html: t("footer.newsletter_desc") }}
                 />
 
+                {/* FORMULÁRIO ESTILIZADO */}
                 <form
                     onSubmit={handleSubmit}
-                    className="flex flex-col gap-2 justify-center mb-8"
+                    className="flex flex-col sm:flex-row gap-0 max-w-lg mx-auto mb-8 border border-white/20 rounded-xl overflow-hidden focus-within:border-indigo-400 transition-colors shadow-2xl"
                 >
                     <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={t("footer.newsletter_placeholder")}
-                        className="px-4 py-3 text-black w-full focus:outline-none border-none"
+                        className="px-6 py-4 text-white bg-white/5 w-full focus:outline-none placeholder:text-white/30 text-sm"
                         aria-label={t("footer.newsletter_placeholder")}
                     />
 
-                    <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                    <button
                         type="submit"
-                        className="bg-white text-black px-6 py-2 font-black transition flex items-center justify-center uppercase border-none"
+                        className="bg-white text-black px-8 py-4 font-black transition-all hover:bg-indigo-400 active:scale-95 disabled:opacity-50 uppercase text-sm min-w-[140px]"
                         disabled={status === "loading"}
-                        aria-busy={status === "loading"}
                     >
-                        {status === "loading" ? "..." : "Submit"}
-                    </motion.button>
+                        {status === "loading" ? "..." : (lang === "pt" ? "Enviar" : "Submit")}
+                    </button>
                 </form>
 
-                {status === "success" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white text-sm mt-3 font-bold bg-black/20 p-2">
-                        {t("footer.success_message")}
-                    </motion.p>
-                )}
-                {status === "error" && (
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-white text-sm mt-3 font-bold bg-black/20 p-2">
-                        {t("footer.error_message")}
-                    </motion.p>
-                )}
+                {/* FEEDBACK STATUS */}
+                <div className="h-6 mb-8">
+                    {status === "success" && (
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-emerald-400 text-xs font-bold uppercase tracking-widest">
+                            {t("footer.success_message")}
+                        </motion.p>
+                    )}
+                    {status === "error" && (
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-rose-400 text-xs font-bold uppercase tracking-widest">
+                            {t("footer.error_message")}
+                        </motion.p>
+                    )}
+                </div>
 
-                <div className="flex flex-col items-center gap-4 mt-10">
-                    <div className="flex gap-6 text-2xl">
+                {/* SOCIAL LINKS */}
+                <div className="flex flex-col items-center gap-6 mt-4">
+                    <div className="flex gap-8 text-2xl">
                         {[
                             { icon: <FaGithub />, link: "https://github.com/N1nji" },
                             { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/pedrofelipe-n1" },
@@ -123,20 +116,22 @@ export default function Footer() {
                                 href={item.link}
                                 target="_blank"
                                 rel="noreferrer"
-                                whileHover={{ scale: 1.2 }}
-                                className="hover:text-black transition-all"
+                                whileHover={{ scale: 1.2, y: -5 }}
+                                className="text-white/60 hover:text-white transition-all drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                             >
                                 {item.icon}
                             </motion.a>
                         ))}
                     </div>
 
-                    <p
-                        className="text-[10px] font-bold opacity-60 mt-2 uppercase tracking-widest"
-                        dangerouslySetInnerHTML= {{
-                            __html: t("footer.rights").replace("{year}", new Date().getFullYear()),
-                        }}
-                    />
+                    <div className="mt-8 pt-8 border-t border-white/5 w-full">
+                        <p
+                            className="text-[9px] font-bold opacity-40 uppercase tracking-[0.3em]"
+                            dangerouslySetInnerHTML= {{
+                                __html: t("footer.rights").replace("{year}", new Date().getFullYear()),
+                            }}
+                        />
+                    </div>
                 </div>
             </motion.div>
         </footer>
