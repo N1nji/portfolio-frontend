@@ -108,7 +108,7 @@ export default function TeamSection() {
                     {lang === "pt" ? "Portfólio" : "Portfolio"}
                   </a>
                 ) : (
-                    <div className="h-[36px]" /> // Spacer para manter o alinhamento
+                    <div className="h-[36px]" />
                 )}
               </div>
             );
