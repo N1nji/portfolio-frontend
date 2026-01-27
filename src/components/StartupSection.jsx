@@ -27,6 +27,9 @@ export default function StartupSection() {
       <div className="absolute top-1/4 -left-20 w-64 h-64 bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none" />
 
+      {/* 2. CONTEÚDO ENVELOPADO (Camada 10) */}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-6xl">
+
       {/* Logo com Animação de Flutuar */}
       <div
         className="relative w-48 h-48 mb-12 flex items-center justify-center group"
@@ -99,6 +102,7 @@ export default function StartupSection() {
           animation: float 6s ease-in-out infinite;
         }
       `}</style>
+      </div>
     </section>
   );
 }
