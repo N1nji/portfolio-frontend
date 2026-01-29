@@ -3,11 +3,15 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "../hooks/useTranslation";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useLocation, useNavigate } from "react-router-dom"; 
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { t } = useTranslation();
+    
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,17 +21,45 @@ export default function Header() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setIsOpen(false);
-    };
+    const handleNavigation = (e, targetId) => {
+        e.preventDefault();
+        
+        if (targetId === "#home") {
+            if (location.pathname !== "/") {
+                navigate("/");
+            }
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setIsOpen(false);
+            return;
+        }
 
-    const handleNavLinkClick = () => {
+        if (location.pathname === "/") {
+            const element = document.querySelector(targetId);
+            if (element) {
+                const headerOffset = 80; 
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        } else {
+
+            navigate("/");
+
+            setTimeout(() => {
+                const element = document.querySelector(targetId);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
         setIsOpen(false);
     };
 
     const navLinks = [
-        { name: t("header.home"), href: "#home", isHome: true },
+        { name: t("header.home"), href: "#home" },
         { name: t("header.about"), href: "#about" },
         { name: t("header.startup"), href: "#startup" },
         { name: t("header.team"), href: "#team" },
@@ -44,10 +76,10 @@ export default function Header() {
         >
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 
-                {/* LOGO - Removido a tag <section> daqui de dentro */}
+                {/* LOGO */}
                 <div 
                     className="flex items-center gap-3 cursor-pointer group"
-                    onClick={scrollToTop}
+                    onClick={(e) => handleNavigation(e, "#home")}
                 >
                     <img
                         src="assets/Logo-N1S1Games.png"
@@ -70,11 +102,11 @@ export default function Header() {
                         <a
                             key={link.name}
                             href={link.href}
-                            onClick={link.isHome ? (e) => { e.preventDefault(); scrollToTop(); } : undefined}
-                            className="relative text-sm font-semibold text-gray-300 hover:text-white transition-colors duration-300 group"
+                            // AQUI ESTÁ A MÁGICA: Usamos nossa função customizada
+                            onClick={(e) => handleNavigation(e, link.href)}
+                            className="relative text-sm font-semibold text-gray-300 hover:text-white transition-colors duration-300 group cursor-pointer"
                         >
                             {link.name}
-                            {/* Linha animada no hover */}
                             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-500 transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
@@ -106,8 +138,8 @@ export default function Header() {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={link.isHome ? (e) => { e.preventDefault(); scrollToTop(); } : handleNavLinkClick}
-                                    className="text-xl font-lobster text-gray-300 hover:text-indigo-400"
+                                    onClick={(e) => handleNavigation(e, link.href)}
+                                    className="text-xl font-lobster text-gray-300 hover:text-indigo-400 cursor-pointer"
                                 >
                                     {link.name}
                                 </a>
